@@ -53,22 +53,27 @@ export default class Triangle {
     polygon.setAttribute('stroke', 'black')
     polygon.setAttribute('stroke-linecap', 'round')
     polygon.setAttribute('stroke-linejoin', 'round')
-    polygon.setAttribute('stroke-width', strokeWidth)
-    groupElement.appendChild(polygon)
 
     // Similar triangles, see link at the top
-    let nrOfPoints = Math.round(Math.random() * 3 + 2)
+    let nrOfPoints = Math.round(Math.random() * 6 + 1)
 
     const angleAB = this.angleBetweenPoints(this.a, this.b, this.c)
     const angleBC = this.angleBetweenPoints(this.b, this.c, this.a)
     const angleAC = this.angleBetweenPoints(this.c, this.a, this.b)
 
+    const lengthAB = this.a.distanceTo(this.b)
+    const lengthBC = this.b.distanceTo(this.c)
+    const lengthAC = this.c.distanceTo(this.a)
+
     // If angle between any sides is less than 45 degrees, make two cuts of triangle
-    if (angleAB < 45 || angleBC < 45 || angleAC < 45) nrOfPoints = 2
-    // if angle is less than 30 degrees, make single cut on the triangle
-    if (angleAB < 30 || angleBC < 30 || angleAC < 30) nrOfPoints = 1
+    if (angleAB < 45 || angleBC < 45 || angleAC < 45 || lengthAB < 100 || lengthBC < 100 || lengthAC < 100) nrOfPoints = 2
+    // if angle is less than 30 degrees, make a single cut on the triangle
+    if (angleAB < 30 || angleBC < 30 || angleAC < 30 || lengthAB < 70 || lengthBC < 70 || lengthAC < 70) nrOfPoints = 1
     // if angle is less than 15 degrees, don't make any cuts on the triangle
-    if (angleAB < 15 || angleBC < 15 || angleAC < 15) nrOfPoints = 0
+    if (angleAB < 15 || angleBC < 15 || angleAC < 15 || lengthAB < 50 || lengthBC < 50 || lengthAC < 50) nrOfPoints = 0
+
+    polygon.setAttribute('stroke-width', strokeWidth)
+    groupElement.appendChild(polygon)
 
     let points1 = this.getPoints(this.c, this.a, nrOfPoints)
     let points2 = this.getPoints(this.c, this.b, nrOfPoints)

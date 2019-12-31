@@ -6,9 +6,8 @@
 </template>
 
 <script>
-import Vector from '@/lib/Vector'
-import Triangle, { svgNs } from '@/lib/Triangle'
-import { getRandomPoints, bowyerWatson } from '@/lib/Utils'
+import { svgNs } from '@/lib/Triangle'
+import { getSuperTriangle, getRandomPoints, bowyerWatson } from '@/lib/Utils'
 
 export default {
   name: 'HelloWorld',
@@ -18,32 +17,22 @@ export default {
   data () {
     return {
       width: 1000,
-      height: 1000,
-      svgEl: null
+      height: 1000
     }
-  },
-  mounted () {
-    this.svgEl = this.$refs.svg
   },
   methods: {
     redraw () {
-      let group = document.querySelector('g')
+      let group = this.$refs.svg.querySelector('g')
       if (group) {
         group.remove()
       }
       group = document.createElementNS(svgNs, 'g')
 
-      let pointList = getRandomPoints(this.width, this.height)
-
-      let superTriangle = new Triangle(
-        new Vector(-this.width * 10, this.height * 10),
-        new Vector(this.width * 10, this.height * 10),
-        new Vector(this.width / 2, -this.height * 10)
-      )
-
-      let triangles = bowyerWatson(superTriangle, pointList)
+      const pointList = getRandomPoints(this.width, this.height)
+      const superTriangle = getSuperTriangle(this.width, this.height)
+      const triangles = bowyerWatson(superTriangle, pointList)
       triangles.forEach(t => t.draw(group))
-      this.svgEl.appendChild(group)
+      this.$refs.svg.appendChild(group)
     }
   }
 }
