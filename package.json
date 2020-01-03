@@ -1,6 +1,8 @@
 {
   "name": "tri-poly",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Triangle Polygon Generator",
+  "author": "Maksim <msurguy@gmail.com>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,7 +10,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "clamp": "^1.0.1",
     "core-js": "^3.4.4",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
+    "query-state": "^4.2.0",
+    "tinycolor2": "^1.4.1",
     "vue": "^2.6.10"
   },
   "devDependencies": {

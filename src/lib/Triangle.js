@@ -45,8 +45,8 @@ export default class Triangle {
     return angle * (180 / Math.PI)
   }
 
-  draw (groupElement) {
-    let strokeWidth = Math.random() * 2 + 1
+  draw (groupElement, howManyLines = 6, thickness = 1, randomThickness) {
+    let strokeWidth = randomThickness ? Math.random() * 2 + 1 : thickness
     let polygon = document.createElementNS(svgNs, 'path')
     polygon.setAttribute('d', this.verticesAsString())
     polygon.setAttribute('fill', 'none')
@@ -55,7 +55,7 @@ export default class Triangle {
     polygon.setAttribute('stroke-linejoin', 'round')
 
     // Similar triangles, see link at the top
-    let nrOfPoints = Math.round(Math.random() * 6 + 1)
+    let nrOfPoints = Math.round(Math.random() * howManyLines + 1)
 
     const angleAB = this.angleBetweenPoints(this.a, this.b, this.c)
     const angleBC = this.angleBetweenPoints(this.b, this.c, this.a)
@@ -66,11 +66,11 @@ export default class Triangle {
     const lengthAC = this.c.distanceTo(this.a)
 
     // If angle between any sides is less than 45 degrees, make two cuts of triangle
-    if (angleAB < 45 || angleBC < 45 || angleAC < 45 || lengthAB < 100 || lengthBC < 100 || lengthAC < 100) nrOfPoints = 2
+    if (angleAB < 45 || angleBC < 45 || angleAC < 45 || lengthAB < 30 || lengthBC < 30 || lengthAC < 30) nrOfPoints = 2
     // if angle is less than 30 degrees, make a single cut on the triangle
-    if (angleAB < 30 || angleBC < 30 || angleAC < 30 || lengthAB < 70 || lengthBC < 70 || lengthAC < 70) nrOfPoints = 1
+    if (angleAB < 30 || angleBC < 30 || angleAC < 30 || lengthAB < 15 || lengthBC < 15 || lengthAC < 15) nrOfPoints = 1
     // if angle is less than 15 degrees, don't make any cuts on the triangle
-    if (angleAB < 15 || angleBC < 15 || angleAC < 15 || lengthAB < 50 || lengthBC < 50 || lengthAC < 50) nrOfPoints = 0
+    if (angleAB < 15 || angleBC < 15 || angleAC < 15 || lengthAB < 10 || lengthBC < 10 || lengthAC < 10) nrOfPoints = 0
 
     polygon.setAttribute('stroke-width', strokeWidth)
     groupElement.appendChild(polygon)

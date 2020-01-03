@@ -9,10 +9,10 @@ export function getSuperTriangle (width, height) {
   )
 }
 
-export function getRandomPoints (width, height) {
+export function getRandomPoints (width, height, howMany) {
   let pointList = []
   // let div = Math.random() * 20 + 5000
-  let nrOfPoints = 100 // width * height / div
+  let nrOfPoints = howMany // width * height / div
   for (let i = 0; i < nrOfPoints; i++) {
     // TODO: distribute points on a circle, hexagon, triangle, pentagon, square, rectangle, etc
     // maybe points within a shape?
