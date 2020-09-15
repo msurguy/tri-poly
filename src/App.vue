@@ -45,6 +45,7 @@
         <h2>Tri Poly</h2>
         <p class="small">Project by <a target="_blank" href="http://twitter.com/msurguy">@msurguy</a>
           <br>
+          based on work of <a target="_blank" href="https://twitter.com/DonKarlssonSan">Johan Karlsson</a> |
           <a target="_blank" href="http://github.com/msurguy/tri-poly">Source</a> | <a target="_blank" href="https://github.com/sponsors/msurguy">Support</a>
         </p>
       </div>
